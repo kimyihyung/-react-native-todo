@@ -21,6 +21,7 @@ export default function App() {
     const res = data.filter((item) => item.timestamp !== timestamp);
     console.log(res);
     setData([...res]);
+    // "..." 어레이를 풀어서 그 안에 있는 내용들 값만 붙여넣는 것이 가능
   };
 
   const handleAdd = () => {
@@ -53,6 +54,7 @@ export default function App() {
           }}
         />
         <Text style={{ width: wp(60) }}>{item.text}</Text>
+        {/* wp50은 가로길이 50% */}
         <View
           style={{
             width: hp(2),
@@ -96,7 +98,7 @@ export default function App() {
           }}
         >
           <Text style={{ fontSize: hp(3), fontWeight: "bold" }}>
-            ✓To do list
+            ✔️To do list
           </Text>
         </View>
         <View style={{ width: wp(100), height: hp(70) }}>
@@ -135,10 +137,11 @@ export default function App() {
             }}
             onPress={handleAdd}
           >
-            <Text>+</Text>
+            <Text>➕</Text>
           </Pressable>
         </View>
       </KeyboardAwareScrollView>
+      {/* 키보드가 적절히 올라가게 하기위한 ios 이슈 */}
       <StatusBar style="auto" />
     </View>
   );
