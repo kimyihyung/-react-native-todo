@@ -20,6 +20,12 @@ export default function App() {
   const handleDelete = (timestamp) => {
     const res = data.filter((item) => item.timestamp !== timestamp);
     setData([...res]);
+    // "..." 어레이를 풀어서 그 안에 있는 내용들 값만 붙여넣는 것이 가능
+  };
+
+  const handleAdd = () => {
+    const res = { timestamp: Date.now(), text: text };
+    setData([...data, res]);
   };
 
   const renderItem = ({ item, index }) => {
@@ -46,10 +52,10 @@ export default function App() {
             opacity: 0.4,
           }}
         />
-        <Text>{item.text}</Text>
+        <Text style={{ width: wp(50) }}>{item.text}</Text>
+        {/* wp50은 가로길이 50% */}
         <View
           style={{
-            marginLeft: wp(30),
             width: hp(2),
             height: hp(2),
             backgroundColor: "#8d71fe",
@@ -112,6 +118,7 @@ export default function App() {
           <TextInput
             placeholder="please write the text."
             value={text}
+            onChangeText={(item) => setText(item)}
             placeholderTextColor="#aaa"
             style={{
               width: wp(60),
@@ -132,7 +139,7 @@ export default function App() {
               alignItems: "center",
               borderRadius: 100,
             }}
-            onPress={null}
+            onPress={handleAdd}
           >
             <Text>+</Text>
           </Pressable>
